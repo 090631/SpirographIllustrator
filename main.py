@@ -27,9 +27,10 @@ spiral_writing_style = ('Times New Roman', 40, 'bold')
 # ===============================================Basic Functions=================================================
 
 
-# Swap r, g, b Slots to Execute Different Euler Orb variants
+# Swap r, g, b Slots to Execute Different Euler Orb Gradients
 def rgb_swap(color, r, g, b):
-    
+  
+    # i, a, h, f, n, l Corresponds To Ice, Aurora, Heart,...etc Gradients 
     if color == "i":
         r, g, b = r, g, b
         return r, g, b
@@ -107,7 +108,7 @@ def euler_orb():
         tur.forward(i * 1.5)
         tur.right(360 / degree)
         p_size += 0.03
-
+        # Color Gradient Clause
         if r > 0.005:
             r -= 0.005
         if r < 0.005 < g:
@@ -216,17 +217,22 @@ def take_color_input():
     
 # ===============================================User Input Clause===============================================
 
-sc.onkey(end, 'e')
-sc.onkey(reset, 'z')
+# Basic Drawing Functions
+sc.onkey(end, 'x')
 sc.onkey(go_home, 'y')
-sc.onkey(euler_orb, 'x')
+sc.onkey(reset_canvas, 'y')
 sc.onkey(background_b, 'b')
 sc.onkey(background_w, 'w')
+
+# User Input Activation Keys
 sc.onkey(take_color_input, 'c')
 sc.onkey(take_degrees_input, 'd')
-sc.onkey(euler_spiral_web, 'Left')
+
+# Execution Keys
+sc.onkey(euler_orb, 'o')
 sc.onkey(euler_spiral_galaxy, 'Up')
 sc.onkey(euler_spiral_illusion, 'Down')
+sc.onkey(euler_spiral_web, 'Left')
 
 sc.listen()
 
