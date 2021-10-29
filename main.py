@@ -72,7 +72,7 @@ def end():
 
 
 # Reset Canvas
-def reset():
+def reset_canvas():
     tur.reset()
 
 
@@ -97,15 +97,17 @@ def background_w():
 
 
 def euler_orb():
-    p_size = 1
+    
     r = 1
     b = 1
     g = 1
+    p_size = 1
+    orb_size_cnst = 1.5
     degree = float(''.join(degrees))
     color = ''.join(colors)
 
     for i in range(1350):
-        tur.forward(i * 1.5)
+        tur.forward(i * orb_size_cnst)
         tur.right(360 / degree)
         p_size += 0.03
         # Color Gradient Clause
@@ -127,11 +129,13 @@ def euler_orb():
 
 # Spiral No. 1
 def euler_spiral_galaxy():
+  
     p_size = 2.5
+    orb_size_cnst = 1.5
     degree = float(''.join(degrees))
 
     for i in range(2300):
-        tur.forward(i * 1.5)
+        tur.forward(i * orb_size_cnst)
         tur.right(360 / degree)
         tur.pensize(p_size)
         tur.pencolor(0, 0, 0)
@@ -142,11 +146,13 @@ def euler_spiral_galaxy():
 
 # Spiral No.2
 def euler_spiral_illusion():
+  
     p_size = 1.5
+    orb_size_cnst = 1.5
     degree = float(''.join(degrees))
 
     for i in range(2300):
-        tur.forward(i * 1.5)
+        tur.forward(i * orb_size_cnst)
         tur.right(360 / degree)
         tur.pensize(p_size)
         tur.pencolor(0, 0, 0)
@@ -157,11 +163,13 @@ def euler_spiral_illusion():
 
 # Spiral No.3
 def euler_spiral_web():
+  
     p_size = 1.5
+    orb_size_cnst = 3
     degree = float(''.join(degrees))
 
     for i in range(1400):
-        tur.forward(i * 3)
+        tur.forward(i * orb_size_cnst)
         tur.right(360 / degree)
         tur.pensize(p_size)
         tur.pencolor(1, 1, 1)
@@ -220,7 +228,7 @@ def take_color_input():
 # Basic Drawing Functions
 sc.onkey(end, 'x')
 sc.onkey(go_home, 'y')
-sc.onkey(reset_canvas, 'y')
+sc.onkey(reset_canvas, 'z')
 sc.onkey(background_b, 'b')
 sc.onkey(background_w, 'w')
 
