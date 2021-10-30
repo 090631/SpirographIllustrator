@@ -124,7 +124,7 @@ def euler_orb():
 
     position((1, 1, 1), 0, -250)
     tur.write(
-        "Euler Orb ({0})".format(orb_titles[color]), 
+        f"Euler Orb ({orb_titles[color]}), 
         True, 
         align="center", 
         font=orb_writing_style
@@ -200,11 +200,11 @@ def euler_spiral_web():
 # Take Degree & Color Inputs from User
 def degree_input(key):
     try:
-        print('alphanumeric key {0} pressed'.format(key.char))
+        print(f'alphanumeric key {key.char} pressed')
         degrees.append(key.char)
 
     except AttributeError:
-        print('special key {0} pressed'.format(key))
+        print(f'special key {key} pressed')
 
     if key == keyboard.Key.enter:
         # Stop listener
@@ -213,11 +213,11 @@ def degree_input(key):
 
 def color_input(key):
     try:
-        print('alphanumeric key {0} pressed'.format(key.char))
+        print(f'alphanumeric key {key.char} pressed')
         colors.append(key.char)
 
     except AttributeError:
-        print('special key {0} pressed'.format(key))
+        print(f'special key {key} pressed')
 
     if key == keyboard.Key.enter:
         # Stop listener
