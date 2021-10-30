@@ -16,21 +16,13 @@ sc.tracer(250, 1)
 tur.hideturtle()
 
 # Global Lists
-colors = [
-    'i' # => Default color
-]  
-degrees = [
-    '2.718' # => Default Degree
-]  
+colors = ['i']  # => Default color
+degrees = ['2.718']  # => Default Degree
 orb_writing_style = (
-    'Times New Roman', 
-    20, 
-    'bold'
+    'Times New Roman', 20, 'bold'
 )
 spiral_writing_style = (
-    'Times New Roman', 
-    40, 
-    'bold'
+    'Times New Roman', 40, 'bold'
 )
 orb_titles = { 
     'i': 'Ice',
@@ -42,6 +34,13 @@ orb_titles = {
 }
 
 # ===============================================Basic Functions=================================================
+
+
+# Write Orb & Sprial Titles
+def write(name, style):
+    tur.write(
+        name, True, align="center", font=style
+    )
 
 
 # Position Turtle() at the desired location With Out Leaving A Trail
@@ -81,7 +80,7 @@ def reset_canvas():
 # Position Turtle() at the center
 def go_home():
     tur.penup()
-    tur.goto(0, 0)
+    tur.goto(0, 0) 
     tur.pendown()
 
 
@@ -99,10 +98,10 @@ def background_w():
 
 
 def euler_orb():
+    p_size = 1
     r = 1
     b = 1
     g = 1
-    p_size = 1
     orb_size = 1.5
     degree = float(''.join(degrees))
     color = ''.join(colors)
@@ -123,12 +122,7 @@ def euler_orb():
         tur.pencolor(rgb_swap(color, r, g, b))
 
     position((1, 1, 1), 0, -250)
-    tur.write(
-        f"Euler Orb ({orb_titles[color]}), 
-        True, 
-        align="center", 
-        font=orb_writing_style
-        )
+    write(f"Euler Orb ({orb_titles[color]})", orb_writing_style)
 
 
 # ===============================================Spiral Functions================================================
@@ -146,12 +140,7 @@ def euler_spiral_galaxy():
         tur.pencolor(0, 0, 0)
 
     position((1, 1, 1), 0, -350)
-    tur.write(
-        " ".join("Euler Spiral (Galaxy)"), 
-        True, 
-        align="center", 
-        font=spiral_writing_style
-        )
+    write(" ".join("Euler Spiral (Galaxy)"), spiral_writing_style)
 
 
 def euler_spiral_illusion():
@@ -166,12 +155,7 @@ def euler_spiral_illusion():
         tur.pencolor(0, 0, 0)
 
     position((1, 1, 1), 0, -350)
-    tur.write(
-        " ".join("Euler Spiral (Illusion)"), 
-        True, 
-        align="center", 
-        font=spiral_writing_style
-        )
+    write(" ".join("Euler Spiral (Illusion))"), spiral_writing_style)
 
 
 def euler_spiral_web():
@@ -186,12 +170,7 @@ def euler_spiral_web():
         tur.pencolor(1, 1, 1)
 
     position((0, 0, 0), 0, -350)
-    tur.write(
-        " ".join("Euler Spiral (Web)"), 
-        True, 
-        align="center", 
-        font=spiral_writing_style
-        )
+    write(" ".join("Euler Spiral (Web)"), spiral_writing_style)
 
 
 # ============================================User Input Functions================================================
@@ -239,7 +218,7 @@ def take_color_input():
         listener.join()
 
 
-# ================================================User Input Keys================================================
+# ===============================================User Input Keys===============================================
 
 # Basic Drawing Functions Keys
 sc.onkey(end, 'x')
@@ -252,7 +231,7 @@ sc.onkey(background_w, 'w')
 sc.onkey(take_color_input, 'c')
 sc.onkey(take_degrees_input, 'd')
 
-# Oeb & Spiral Execution Keys
+# Orb & Spiral Execution Keys
 sc.onkey(euler_orb, 'o')
 sc.onkey(euler_spiral_galaxy, 'Up')
 sc.onkey(euler_spiral_illusion, 'Down')
