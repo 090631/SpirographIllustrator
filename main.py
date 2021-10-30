@@ -16,13 +16,29 @@ sc.tracer(250, 1)
 tur.hideturtle()
 
 # Global Lists
-colors = ['i']  # => Default color
-degrees = ['2.718']  # => Default Degree
-orb_writing_style = ('Times New Roman', 20, 'bold')
-spiral_writing_style = ('Times New Roman', 40, 'bold')
-orb_titles = {
-    'f': 'Fire', 'a': 'Aurora', 'h': 'Heart',
-    'n': 'Nightmare', 'i': 'Ice', 'l': 'Leaf'
+colors = [
+    'i' # => Default color
+]  
+degrees = [
+    '2.718' # => Default Degree
+]  
+orb_writing_style = (
+    'Times New Roman', 
+    20, 
+    'bold'
+)
+spiral_writing_style = (
+    'Times New Roman', 
+    40, 
+    'bold'
+)
+orb_titles = { 
+    'i': 'Ice',
+    'a': 'Aurora', 
+    'h': 'Heart',
+    'n': 'Nightmare', 
+    'f': 'Fire',
+    'l': 'Leaf'
 }
 
 # ===============================================Basic Functions=================================================
@@ -94,9 +110,9 @@ def euler_orb():
     for i in range(1350):
         tur.forward(i * orb_size)
         tur.right(360 / degree)
+        
         if p_size <= 25:
             p_size += 0.03
-
         if r > 0.005:
             r -= 0.005
         if r < 0.005 < g:
