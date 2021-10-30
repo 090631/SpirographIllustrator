@@ -18,51 +18,37 @@ tur.hideturtle()
 # Global Lists
 colors = ['i']  # => Default color
 degrees = ['2.718']  # => Default Degree
-orb_titles = {'f': 'Fire', 'a': 'Aurora', 'h': 'Heart',
-              'n': 'Nightmare', 'i': 'Ice', 'l': 'Leaf'
-              }
 orb_writing_style = ('Times New Roman', 20, 'bold')
 spiral_writing_style = ('Times New Roman', 40, 'bold')
+orb_titles = {
+    'f': 'Fire', 'a': 'Aurora', 'h': 'Heart',
+    'n': 'Nightmare', 'i': 'Ice', 'l': 'Leaf'
+}
 
 # ===============================================Basic Functions=================================================
 
 
-# Swap r, g, b Slots to Execute Different Euler Orb Gradients
-def rgb_swap(color, r, g, b):
-  
-    # i, a, h, f, n, l Corresponds To Ice, Aurora, Heart,...etc Gradients 
-    if color == "i":
-        r, g, b = r, g, b
-        return r, g, b
-
-    if color == "a":
-        r, g, b = r, b, g
-        return r, g, b
-
-    if color == "h":
-        r, g, b = b, r, g
-        return r, g, b
-
-    if color == "f":
-        r, g, b = b, g, r
-        return r, g, b
-
-    if color == "n":
-        r, g, b = g, r, b
-        return r, g, b
-
-    if color == "l":
-        r, g, b = g, b, r
-        return r, g, b
-
-
-# Position Turtle() At Desired Location
+# Position Turtle() at the desired location With Out Leaving A Trail
 def position(color, x, y):
     tur.pencolor(color)
     tur.penup()
     tur.goto(x, y)
 
-    
+
+# Swap r, g, b slots to execute different Euler Orb variants
+def rgb_swap(color, r, g, b):
+    colorDict = {
+        'i' : (r, g, b),
+        'a' : (r, b, g),
+        'h' : (b, r, g),
+        'f' : (b, g, r),
+        'n' : (g, r, b),
+        'l' : (g, b, r)
+    }
+    r, g, b = colorDict[color]
+    return r, g, b
+
+
 # =======================================Basic Drawing Functions For User=======================================
 
 
@@ -97,20 +83,20 @@ def background_w():
 
 
 def euler_orb():
-    
     r = 1
     b = 1
     g = 1
     p_size = 1
-    orb_size_cnst = 1.5
+    orb_size = 1.5
     degree = float(''.join(degrees))
     color = ''.join(colors)
 
     for i in range(1350):
-        tur.forward(i * orb_size_cnst)
+        tur.forward(i * orb_size)
         tur.right(360 / degree)
-        p_size += 0.03
-        # Color Gradient Clause
+        if p_size <= 25:
+            p_size += 0.03
+
         if r > 0.005:
             r -= 0.005
         if r < 0.005 < g:
@@ -121,67 +107,81 @@ def euler_orb():
         tur.pencolor(rgb_swap(color, r, g, b))
 
     position((1, 1, 1), 0, -250)
-    tur.write("Euler Orb({0})".format(orb_titles[color]), True, align="center", font=orb_writing_style)
+    tur.write(
+        "Euler Orb ({0})".format(orb_titles[color]), 
+        True, 
+        align="center", 
+        font=orb_writing_style
+        )
 
 
 # ===============================================Spiral Functions================================================
 
 
-# Spiral No. 1
 def euler_spiral_galaxy():
-  
     p_size = 2.5
-    orb_size_cnst = 1.5
+    spiral_size = 1.5
     degree = float(''.join(degrees))
 
     for i in range(2300):
-        tur.forward(i * orb_size_cnst)
+        tur.forward(i * spiral_size)
         tur.right(360 / degree)
         tur.pensize(p_size)
         tur.pencolor(0, 0, 0)
 
     position((1, 1, 1), 0, -350)
-    tur.write(" ".join("Euler Spiral (Galaxy)"), True, align="center", font=spiral_writing_style)
+    tur.write(
+        " ".join("Euler Spiral (Galaxy)"), 
+        True, 
+        align="center", 
+        font=spiral_writing_style
+        )
 
 
-# Spiral No.2
 def euler_spiral_illusion():
-  
     p_size = 1.5
-    orb_size_cnst = 1.5
+    spiral_size = 1.5
     degree = float(''.join(degrees))
 
     for i in range(2300):
-        tur.forward(i * orb_size_cnst)
+        tur.forward(i * spiral_size)
         tur.right(360 / degree)
         tur.pensize(p_size)
         tur.pencolor(0, 0, 0)
 
     position((1, 1, 1), 0, -350)
-    tur.write(" ".join("Euler Spiral (Illusion)"), True, align="center", font=spiral_writing_style)
+    tur.write(
+        " ".join("Euler Spiral (Illusion)"), 
+        True, 
+        align="center", 
+        font=spiral_writing_style
+        )
 
 
-# Spiral No.3
 def euler_spiral_web():
-  
     p_size = 1.5
-    orb_size_cnst = 3
+    spiral_size = 3
     degree = float(''.join(degrees))
 
     for i in range(1400):
-        tur.forward(i * orb_size_cnst)
+        tur.forward(i * spiral_size)
         tur.right(360 / degree)
         tur.pensize(p_size)
         tur.pencolor(1, 1, 1)
 
     position((0, 0, 0), 0, -350)
-    tur.write(" ".join("Euler Spiral (Web)"), True, align="center", font=spiral_writing_style)
+    tur.write(
+        " ".join("Euler Spiral (Web)"), 
+        True, 
+        align="center", 
+        font=spiral_writing_style
+        )
 
 
 # ============================================Key Input Functions================================================
 
 
-# Take Degree Inputs From User
+# Take Degree & Color Inputs from User
 def degree_input(key):
     try:
         print('alphanumeric key {0} pressed'.format(key.char))
@@ -194,8 +194,7 @@ def degree_input(key):
         # Stop listener
         return False
 
-    
-# Take Color Inputs From User
+
 def color_input(key):
     try:
         print('alphanumeric key {0} pressed'.format(key.char))
@@ -207,22 +206,21 @@ def color_input(key):
     if key == keyboard.Key.enter:
         # Stop listener
         return False
-    
 
-# Execute Function degree_input() When We Need It
+
+# Execute Function degree_input() & color_input() When We Need It
 def take_degrees_input():
     degrees.clear()
     with keyboard.Listener(on_press=degree_input) as listener:
         listener.join()
 
 
-# Execute Function color_input() When We Need It
 def take_color_input():
     colors.clear()
     with keyboard.Listener(on_press=color_input) as listener:
         listener.join()
-    
-    
+
+
 # ===============================================User Input Clause===============================================
 
 # Basic Drawing Functions
