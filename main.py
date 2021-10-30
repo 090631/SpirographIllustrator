@@ -194,10 +194,10 @@ def euler_spiral_web():
         )
 
 
-# ============================================Key Input Functions================================================
+# ============================================User Input Functions================================================
 
 
-# Take Degree & Color Inputs from User
+# Take Degree Inputs from User
 def degree_input(key):
     try:
         print(f'alphanumeric key {key.char} pressed')
@@ -211,6 +211,7 @@ def degree_input(key):
         return False
 
 
+# Take Color Inputs from User
 def color_input(key):
     try:
         print(f'alphanumeric key {key.char} pressed')
@@ -224,22 +225,23 @@ def color_input(key):
         return False
 
 
-# Execute Function degree_input() & color_input() When We Need It
+# Execute Function degree_input() When We Need It
 def take_degrees_input():
     degrees.clear()
     with keyboard.Listener(on_press=degree_input) as listener:
         listener.join()
 
 
+# Execute Function color_input() When We Need It
 def take_color_input():
     colors.clear()
     with keyboard.Listener(on_press=color_input) as listener:
         listener.join()
 
 
-# ===============================================User Input Clause===============================================
+# ================================================User Input Keys================================================
 
-# Basic Drawing Functions
+# Basic Drawing Functions Keys
 sc.onkey(end, 'x')
 sc.onkey(go_home, 'y')
 sc.onkey(reset_canvas, 'z')
@@ -250,7 +252,7 @@ sc.onkey(background_w, 'w')
 sc.onkey(take_color_input, 'c')
 sc.onkey(take_degrees_input, 'd')
 
-# Execution Keys
+# Oeb & Spiral Execution Keys
 sc.onkey(euler_orb, 'o')
 sc.onkey(euler_spiral_galaxy, 'Up')
 sc.onkey(euler_spiral_illusion, 'Down')
