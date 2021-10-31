@@ -38,9 +38,7 @@ orb_titles = {
 
 # Write Orb & Sprial Titles
 def write(name, style):
-    tur.write(
-        name, True, align="center", font=style
-    )
+    tur.write(name, True, align="center", font=style)
 
 
 # Position Turtle() at the desired location With Out Leaving A Trail
