@@ -2,7 +2,6 @@ import turtle
 from pynput import keyboard
 
 # ==============================================SetUp & Variables=+=============================================
-
 # Window Title
 turtle.title("Euler Orb")
 
@@ -34,22 +33,20 @@ orb_titles = {
 }
 
 # ===============================================Basic Functions=================================================
-
-
 # Write Orb & Sprial Titles
-def write(name, style):
-    tur.write(name, True, align="center", font=style)
-
+def write(name: str, style: tuple) -> None:
+    tur.write(
+        name, True, align="center", font=style
+    )
 
 # Position Turtle() at the desired location With Out Leaving A Trail
-def position(color, x, y):
+def position(color: tuple, x: int, y: int) -> None:
     tur.pencolor(color)
     tur.penup()
     tur.goto(x, y)
 
-
 # Swap r, g, b slots to execute different Euler Orb variants
-def rgb_swap(color, r, g, b):
+def rgb_swap(color: str, r: int, g: int, b: int) -> tuple:
     colorDict = {
         'i' : (r, g, b),
         'a' : (r, b, g),
@@ -61,41 +58,35 @@ def rgb_swap(color, r, g, b):
     r, g, b = colorDict[color]
     return r, g, b
 
-
 # =======================================Basic Drawing Functions For User=======================================
-
-
 # End Program
-def end():
+def end() -> None:
     turtle.bye()
 
 
 # Reset Canvas
-def reset_canvas():
+def reset_canvas() -> None:
     tur.reset()
 
 
 # Position Turtle() at the center
-def go_home():
+def go_home() -> None:
     tur.penup()
     tur.goto(0, 0) 
     tur.pendown()
 
 
 # Set Background Color Black
-def background_b():
+def background_b() -> None:
     sc.bgcolor(0, 0, 0)
 
 
 # Set Background Color White
-def background_w():
+def background_w() -> None:
     sc.bgcolor(1, 1, 1)
 
-
 # ================================================Orb Functions==================================================
-
-
-def euler_orb():
+def euler_orb() -> None:
     p_size = 1
     r = 1
     b = 1
@@ -122,11 +113,8 @@ def euler_orb():
     position((1, 1, 1), 0, -250)
     write(f"Euler Orb ({orb_titles[color]})", orb_writing_style)
 
-
 # ===============================================Spiral Functions================================================
-
-
-def euler_spiral_galaxy():
+def euler_spiral_galaxy() -> None:
     p_size = 2.5
     spiral_size = 1.5
     degree = float(''.join(degrees))
@@ -138,10 +126,11 @@ def euler_spiral_galaxy():
         tur.pencolor(0, 0, 0)
 
     position((1, 1, 1), 0, -350)
-    write(" ".join("Euler Spiral (Galaxy)"), spiral_writing_style)
+    write(" ".join("Euler Spiral (Galaxy)"), spiral_writing_style
+    )
 
 
-def euler_spiral_illusion():
+def euler_spiral_illusion() -> None:
     p_size = 1.5
     spiral_size = 1.5
     degree = float(''.join(degrees))
@@ -154,6 +143,21 @@ def euler_spiral_illusion():
 
     position((1, 1, 1), 0, -350)
     write(" ".join("Euler Spiral (Illusion))"), spiral_writing_style)
+
+
+def euler_spiral_web() -> None:
+    p_size = 1.5
+    spiral_size = 3
+    degree = float(''.join(degrees))
+
+    for i in range(1400):
+        tur.forward(i * spiral_size)
+        tur.right(360 / degree)
+        tur.pensize(p_size)
+        tur.pencolor(1, 1, 1)
+
+    position((.5, .5, .5), 0, -350)
+    write(" ".join("Euler Spirals (Web)"), spiral_writing_style)
 
 
 def euler_spiral_web():
@@ -170,12 +174,9 @@ def euler_spiral_web():
     position((0, 0, 0), 0, -350)
     write(" ".join("Euler Spiral (Web)"), spiral_writing_style)
 
-
 # ============================================User Input Functions================================================
-
-
 # Take Degree Inputs from User
-def degree_input(key):
+def degree_input(key: str) -> None:
     try:
         print(f'alphanumeric key {key.char} pressed')
         degrees.append(key.char)
@@ -189,7 +190,7 @@ def degree_input(key):
 
 
 # Take Color Inputs from User
-def color_input(key):
+def color_input(key: str) -> None:
     try:
         print(f'alphanumeric key {key.char} pressed')
         colors.append(key.char)
@@ -203,21 +204,19 @@ def color_input(key):
 
 
 # Execute Function degree_input() When We Need It
-def take_degrees_input():
+def take_degrees_input() -> None:
     degrees.clear()
     with keyboard.Listener(on_press=degree_input) as listener:
         listener.join()
 
 
 # Execute Function color_input() When We Need It
-def take_color_input():
+def take_color_input() -> None:
     colors.clear()
     with keyboard.Listener(on_press=color_input) as listener:
         listener.join()
 
-
 # ===============================================User Input Keys===============================================
-
 # Basic Drawing Functions Keys
 sc.onkey(end, 'x')
 sc.onkey(go_home, 'y')
@@ -236,7 +235,5 @@ sc.onkey(euler_spiral_illusion, 'Down')
 sc.onkey(euler_spiral_web, 'Left')
 
 sc.listen()
-
 # ================================================Program Finish================================================
-
 turtle.done()
